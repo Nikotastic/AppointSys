@@ -1,0 +1,64 @@
+@model AppointSysWeb.Data.Entities.Shift
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Shift</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestDate" class="control-label"></label>
+                <input asp-for="RequestDate" class="form-control" />
+                <span asp-validation-for="RequestDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateAttention" class="control-label"></label>
+                <input asp-for="DateAttention" class="form-control" />
+                <span asp-validation-for="DateAttention" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypesOfServiceId" class="control-label"></label>
+                <select asp-for="TypesOfServiceId" class ="form-control" asp-items="ViewBag.TypesOfServiceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AffiliateId" class="control-label"></label>
+                <select asp-for="AffiliateId" class ="form-control" asp-items="ViewBag.AffiliateId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoxId" class="control-label"></label>
+                <select asp-for="BoxId" class ="form-control" asp-items="ViewBag.BoxId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServedByEmployeeId" class="control-label"></label>
+                <select asp-for="ServedByEmployeeId" class ="form-control" asp-items="ViewBag.ServedByEmployeeId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
