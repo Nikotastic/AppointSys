@@ -29,7 +29,17 @@ public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
             .HasForeignKey(s => s.TypesOfServiceId);
         
         builder.HasOne(s => s.Affiliate)
-            .WithMany()
+            .WithMany(a => a.Shifts)
             .HasForeignKey(s => s.AffiliateId);
+
+        builder.HasOne(s => s.Box)
+            .WithMany()
+            .HasForeignKey(s => s.BoxId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasOne(s => s.ServedByEmployee)
+            .WithMany()
+            .HasForeignKey(s => s.ServedByEmployeeId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

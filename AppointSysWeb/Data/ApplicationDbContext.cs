@@ -9,6 +9,15 @@ namespace AppointSysWeb.Data
         public DbSet<Status> Statuses { get; set; }
         public DbSet<TypeOfService> TypeOfServices { get; set; }
         public DbSet<Affiliate> Affiliates { get; set; }
+        public DbSet<Box> Boxes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        }
 
     }
     
