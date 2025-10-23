@@ -18,7 +18,7 @@ public class ShiftConfiguration : IEntityTypeConfiguration<Shift>
             .IsRequired();
         
         builder.Property(s => s.DateAttention)
-            .IsRequired(false);
+            .IsRequired();
         
         builder.HasOne(s => s.Status)
             .WithMany()

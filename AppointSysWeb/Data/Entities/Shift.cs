@@ -1,45 +1,42 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AppointSysWeb.Data.Entities;
-
-public sealed class Shift(
-    int id,
-    string number,
-    DateTime requestDate,
-    DateTime dateAttention,
-    int statusId,
-    Status status,
-    int typesOfServiceId,
-    TypeOfService typesOfService,
-    int affiliateId,
-    Affiliate affiliate)
+﻿// C#
+namespace AppointSysWeb.Data.Entities
 {
-    public int Id { get; set; } = id;
-    public string Number { get; set; } = number;
-    public DateTime RequestDate { get; set; } = requestDate;
-    public DateTime DateAttention { get; set; } = dateAttention;
-    public int StatusId { get; set; } = statusId;
-    public Status Status { get; set; } = status;
-    public int TypesOfServiceId { get; set; } = typesOfServiceId;
-    public TypeOfService TypesOfService { get; set; } = typesOfService;
-    public int AffiliateId { get; set; } = affiliateId;
-    public Affiliate Affiliate { get; set; } = affiliate;
-
-    // Indicates whether the shift has been archived during a reset operation
-    public bool IsArchived { get; set; } = false;
-
-    // Box (service desk/counter) where the shift will be attended
-    public int? BoxId { get; set; }
-    public Box? Box { get; set; }
-
-    // Employee who served this shift (optional)
-    public int? ServedByEmployeeId { get; set; }
-    public Employee? ServedByEmployee { get; set; }
-
-    public override string ToString()
+    public class Shift
     {
-        return $"Turno N°{Number} - Servicio: {TypesOfService} - Estado: {Status}";
+        public int Id { get; private set; }
+        public string Number { get; private set; } = null!;
+        public DateTime RequestDate { get; private set; }
+        public DateTime DateAttention { get; private set; }
+
+        public int StatusId { get; private set; }
+        public Status? Status { get; private set; }
+
+        public int TypesOfServiceId { get; private set; }
+        public TypeOfService? TypesOfService { get; private set; }
+
+        public int AffiliateId { get; private set; }
+        public Affiliate? Affiliate { get; private set; }
+
+        public int? BoxId { get; private set; }
+        public Box? Box { get; private set; }
+
+        public int? ServedByEmployeeId { get; private set; }
+        public Employee? ServedByEmployee { get; private set; }
+
+        // Constructor requerido por EF Core
+        protected Shift() { }
+
+        // Constructor de dominio: solo propiedades mapeables (escalars)
+        public Shift(int id, string number, DateTime requestDate, DateTime dateAttention,
+            int statusId, int typesOfServiceId, int affiliateId)
+        {
+            Id = id;
+            Number = number;
+            RequestDate = requestDate;
+            DateAttention = dateAttention;
+            StatusId = statusId;
+            TypesOfServiceId = typesOfServiceId;
+            AffiliateId = affiliateId;
+        }
     }
-
 }
-
